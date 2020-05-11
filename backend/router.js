@@ -5,14 +5,15 @@ const logger = require("morgan");
 router.use(logger());
 
 router.get("/api/items", (req,res) => {
-  const item = {
-    id: 281904,
+  const CartItem = 
+  {
+    id: "281904",
     product: "shirt",
-    quantity: 1
+    quantity: 89023,
   }
 })
 
-router.use("api/items", (req, res) => {
+router.use("/api/cart-items", (req, res) => {
   res.json("Hi, from Routes Server files");
 });
 
