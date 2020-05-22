@@ -4,7 +4,7 @@ const credentials = new Pool({
   password: "verde",
   host: "localhost",
   port: 5432,
-  database: "postgres",
+  database: "ExpressShopDB",
   ssl: false
 });
 module.exports = credentials;

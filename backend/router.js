@@ -1,10 +1,6 @@
-const logger = require("morgan");
 const express = require("express");
 const routes = express.Router();
 const pool = require("../connection");
-
-router.use(logger());
-
 
 function getTable(req, res) {
   pool.query("select * from shopping_cart order by id").then(result => {
@@ -15,11 +11,11 @@ routes.get("/cart-items", function(req, res) {
   getTable(req, res);
 });
 
-router.use("/api/cart-items", (req, res) => {
+routes.use("/api/cart-items", (req, res) => {
   res.json("Hi, from Routes Server files");
 });
 
-router.get("/cart-items", (req, res) => {
+routes.get("/cart-items", (req, res) => {
   const {maxPrice, prefix, pageSize} = req.query;
   let items;
   let cached = {};
@@ -42,7 +38,7 @@ router.get("/cart-items", (req, res) => {
   res.json(items);
 });
 
-router.get('/cart-items', (req, res) => {
+routes.get('/cart-items', (req, res) => {
   const item = CartItem.filter((x) => x.id === Number(req.param.id))
   if (item.length >= 1) {
     res.status(200);
@@ -94,4 +90,4 @@ routes.delete("/cart-items/:id", function(req, res) {
   });
 });
 
-module.exports = router;
+module.exports = routes;
